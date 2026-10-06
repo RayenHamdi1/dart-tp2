@@ -1,28 +1,36 @@
-void main() {
-  final etudiants = [
-    Etudiant(nom: 'Ahmed', moyenne: 14.5),
-    Etudiant(nom: 'Sarra', moyenne: 9.0),
-    Etudiant(nom: 'Youssef', moyenne: 12.0),
-  ];
+class Cours {
+  String nom;
+  int coefficient;
+  double note;
 
-  for (var e in etudiants) {
-    print(e);
-  }
-  final admis = etudiants.where((e) => e.estAdmis).map((e) => e.nom).join();
-  print('Admis : $admis');
+  Cours(this.nom, this.coefficient, this.note);
 }
 
-class Etudiant {
-  final String nom;
-  final double moyenne;
+void main() {
+  List<Cours> cours = [
+    Cours("dev mobile", 2, 15),
+    Cours("uml", 3, 18),
+    Cours("Dart", 2, 12),
+  ];
 
-  Etudiant({required this.nom, required this.moyenne});
+  double totalnote = 0;
+  double totalcoefficient = 0;
 
-  bool get estAdmis => moyenne >= 10;
-
-  @override
-  String toString() {
-    final statut = estAdmis ? 'admis' : 'non admis';
-    return '$nom - $moyenne ($statut)';
+  for (var c in cours) {
+    totalnote += c.note * c.coefficient;
+    totalcoefficient += c.coefficient;
   }
+
+  double moyenne = totalnote / totalcoefficient;
+
+  Cours meilleur = cours[0];
+  for (var c in cours) {
+    if (c.note > meilleur.note) {
+      meilleur = c;
+    }
+  }
+  print("La moyenne pondérée est : $moyenne");
+  print(
+    "Le cours avec la meilleure note est : ${meilleur.nom} avec une note de ${meilleur.note}",
+  );
 }
