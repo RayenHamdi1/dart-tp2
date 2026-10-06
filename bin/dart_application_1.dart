@@ -1,57 +1,14 @@
-import 'package:args/args.dart';
+void main() {
+  String nom = 'rayen';
+  int age = 21;
+  double moyenne = 19.01;
+  bool inscrit = true;
 
-const String version = '0.0.1';
+  const double tva = 0.19;
+  final int anneeCourante = DateTime.now().year;
 
-ArgParser buildParser() {
-  return ArgParser()
-    ..addFlag(
-      'help',
-      abbr: 'h',
-      negatable: false,
-      help: 'Print this usage information.',
-    )
-    ..addFlag(
-      'verbose',
-      abbr: 'v',
-      negatable: false,
-      help: 'Show additional command output.',
-    )
-    ..addFlag('version', negatable: false, help: 'Print the tool version.');
-}
-
-void printUsage(ArgParser argParser) {
-  print('Usage: dart dart_application_1.dart <flags> [arguments]');
-  print(argParser.usage);
-}
-
-void main(List<String> arguments) {
-  final ArgParser argParser = buildParser();
-  try {
-    final ArgResults results = argParser.parse(arguments);
-    bool verbose = false;
-
-    // Process the parsed arguments.
-    if (results.flag('help')) {
-      printUsage(argParser);
-      return;
-    }
-    if (results.flag('version')) {
-      print('dart_application_1 version: $version');
-      return;
-    }
-    if (results.flag('verbose')) {
-      verbose = true;
-    }
-
-    // Act on the arguments provided.
-    print('Positional arguments: ${results.rest}');
-    if (verbose) {
-      print('[VERBOSE] All arguments: ${results.arguments}');
-    }
-  } on FormatException catch (e) {
-    // Print usage information if an invalid argument was provided.
-    print(e.message);
-    print('');
-    printUsage(argParser);
-  }
+  print('Je m\'appelle $nom, j\'ai $age ans');
+  print('Moyenne : ${moyenne.toStringAsFixed(2)}');
+  print('Année : $anneeCourante');
+  //
 }

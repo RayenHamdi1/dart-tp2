@@ -1,0 +1,13 @@
+void main (){
+String nom ='rayen';
+int age =22;
+double moyenne= 19.01;
+bool inscrit =true ;
+
+
+const double tva =0.19;
+final int anneecourante =DateTime.now().year;
+print
+
+
+}
