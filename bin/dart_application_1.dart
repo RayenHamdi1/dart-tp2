@@ -1,33 +1,30 @@
-void mains() {
-  String nom = 'rayen';
-  int age = 21;
-  double moyenne = 19.01;
-  bool inscrit = true;
-
-  const double tva = 0.19;
-  final int anneeCourante = DateTime.now().year;
-
-  print('Je m\'appelle $nom, j\'ai $age ans');
-  print('Moyenne : ${moyenne.toStringAsFixed(2)}');
-  print('Année : $anneeCourante');
-  // TODO 5 : Une valeur 'const' ne peut pas être modifiée.
-}
-
 void main() {
-  String? surnom;
-  String? email = 'rayen@iset.tn';
+  List<int> notes = [12, 8, 15, 17, 9];
 
-  print(surnom ?? 'Aucun surnom');
+  notes.add(11);
 
-  print(email?.length);
-  surnom = 'rayen';
-  print(surnom ?? 'Aucun surnom');
+  print(notes.length);
 
-  // String? vide;
-  // print(vide!.length);
-  // L'opérateur ! fait planter le programme car la variable est null.
-
-  String decrire(String? nom) {
-    return 'Bonjour ${nom ?? 'visiteur'}';
+  for (int note in notes) {
+    print(note);
   }
+
+  List<int> admettre = notes.where((n) => n >= 10).toList();
+  print(admettre);
+
+  int somme = 0;
+  for (int note in notes) {
+    somme += note;
+  }
+
+  double moyenne = somme / notes.length;
+  print(moyenne);
+
+  Map<String, int> ages = {'rayen': 21, 'ahmed': 21};
+
+  ages['Youssef'] = 23;
+
+  ages.forEach((nom, age) {
+    print('$nom a $age ans');
+  });
 }
