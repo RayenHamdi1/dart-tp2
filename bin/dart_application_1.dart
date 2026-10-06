@@ -1,21 +1,28 @@
 void main() {
-  print(carre(5));
-  print(moyenne(12, 16));
-  afficherFiche(nom: 'rayen');
-  afficherFiche(nom: 'youssef', classe: 'DSI3', moyenne: 15.5);
+  final etudiants = [
+    Etudiant(nom: 'Ahmed', moyenne: 14.5),
+    Etudiant(nom: 'Sarra', moyenne: 9.0),
+    Etudiant(nom: 'Youssef', moyenne: 12.0),
+  ];
+
+  for (var e in etudiants) {
+    print(e);
+  }
+  final admis = etudiants.where((e) => e.estAdmis).map((e) => e.nom).join();
+  print('Admis : $admis');
 }
 
-int carre(int n) => n * n;
+class Etudiant {
+  final String nom;
+  final double moyenne;
 
-double moyenne(double n1, double n2) {
-  return (n1 + n2) / 2;
-}
+  Etudiant({required this.nom, required this.moyenne});
 
-void afficherFiche({
-  required String nom,
-  String classe = 'Non précisée',
-  double? moyenne,
-}) {
-  String moyTexte = moyenne != null ? moyenne.toString() : 'non renseignée';
-  print('Nom : $nom | Classe : $classe | Moyenne : $moyTexte');
+  bool get estAdmis => moyenne >= 10;
+
+  @override
+  String toString() {
+    final statut = estAdmis ? 'admis' : 'non admis';
+    return '$nom - $moyenne ($statut)';
+  }
 }
