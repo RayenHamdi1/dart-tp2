@@ -1,30 +1,21 @@
 void main() {
-  List<int> notes = [12, 8, 15, 17, 9];
+  print(carre(5));
+  print(moyenne(12, 16));
+  afficherFiche(nom: 'rayen');
+  afficherFiche(nom: 'youssef', classe: 'DSI3', moyenne: 15.5);
+}
 
-  notes.add(11);
+int carre(int n) => n * n;
 
-  print(notes.length);
+double moyenne(double n1, double n2) {
+  return (n1 + n2) / 2;
+}
 
-  for (int note in notes) {
-    print(note);
-  }
-
-  List<int> admettre = notes.where((n) => n >= 10).toList();
-  print(admettre);
-
-  int somme = 0;
-  for (int note in notes) {
-    somme += note;
-  }
-
-  double moyenne = somme / notes.length;
-  print(moyenne);
-
-  Map<String, int> ages = {'rayen': 21, 'ahmed': 21};
-
-  ages['Youssef'] = 23;
-
-  ages.forEach((nom, age) {
-    print('$nom a $age ans');
-  });
+void afficherFiche({
+  required String nom,
+  String classe = 'Non précisée',
+  double? moyenne,
+}) {
+  String moyTexte = moyenne != null ? moyenne.toString() : 'non renseignée';
+  print('Nom : $nom | Classe : $classe | Moyenne : $moyTexte');
 }
